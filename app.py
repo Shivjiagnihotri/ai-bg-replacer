@@ -11,22 +11,22 @@ DEFAULT_NEGATIVE_PROMPT = ""
 
 EXAMPLES = [
     [
-        "examples/black-sneakers-with-white-sole.jpg",
+        "black-sneakers-with-white-sole.jpg",
         "on the grass in Central Park, gorgeous summer day with Bethesda fountain in the background, commercial footwear product photography",
         "people, litter, trash, crowds, messy",
     ],
     [
-        "examples/DIY-beard-balm.jpg",
+        "DIY-beard-balm.jpg",
         "on a mossy rock, white wood anemone blossoms, Loch Ken, Scotland",
         "purple, wrong proportions",
     ],
     [
-        "examples/dj-making-music-on-mixer.jpg",
+        "dj-making-music-on-mixer.jpg",
         "on the turntables with a packed dance floor, epic midnight edm party in Miami Beach, colorful nightlife photography",
         "disfigured, dismembered, mangled, marred",
     ],
     [
-        "examples/jean-shorts-woman.jpg",
+        "jean-shorts-woman.jpg",
         "on the beach in Malibu, a five-star beachfront hotel in the background, stark late afternoon light near the dunes, lifestyle photography",
         "blurry background, ripples, soft focus, bokeh",
     ],
