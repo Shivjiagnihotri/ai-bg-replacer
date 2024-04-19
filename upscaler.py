@@ -2,7 +2,6 @@
 import os
 import requests
 
-import torch
 import cv2
 import numpy as np
 from PIL import Image
@@ -15,8 +14,6 @@ upsampler = None
 def init():
     global upsampler
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-
     print("Initializing upscaler...")
 
     if not os.path.exists("weights"):
@@ -28,7 +25,7 @@ def init():
     model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64,
                     num_block=23, num_grow_ch=32, scale=2)
     upsampler = RealESRGANer(
-        scale=2, model_path="weights/RealESRGAN_x2plus.pth", model=model, device=device)
+        scale=2, model_path="weights/RealESRGAN_x2plus.pth", model=model, device="cuda")
 
 
 def upscale(image):

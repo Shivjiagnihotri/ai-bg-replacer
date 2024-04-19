@@ -3,20 +3,17 @@ import numpy as np
 from PIL import Image
 from transformers import DPTFeatureExtractor, DPTForDepthEstimation
 
-device = None
 depth_estimator = None
 feature_extractor = None
 
 
 def init():
-    global device, depth_estimator, feature_extractor
-
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    global depth_estimator, feature_extractor
 
     print("Initializing depth estimator...")
 
     depth_estimator = DPTForDepthEstimation.from_pretrained(
-        "Intel/dpt-hybrid-midas").to(device)
+        "Intel/dpt-hybrid-midas").to("cuda")
     feature_extractor = DPTFeatureExtractor.from_pretrained(
         "Intel/dpt-hybrid-midas")
 
@@ -25,9 +22,9 @@ def get_depth_map(image):
     original_size = image.size
 
     image = feature_extractor(
-        images=image, return_tensors="pt").pixel_values.to(device)
+        images=image, return_tensors="pt").pixel_values.to("cuda")
 
-    with torch.no_grad(), torch.autocast(device):
+    with torch.no_grad(), torch.autocast("cuda"):
         depth_map = depth_estimator(image).predicted_depth
 
     depth_map = torch.nn.functional.interpolate(
