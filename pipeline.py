@@ -1,14 +1,11 @@
 import torch
 from diffusers import StableDiffusionXLControlNetPipeline, ControlNetModel, AutoencoderKL, UniPCMultistepScheduler
 
-device = None
 pipe = None
 
 
 def init():
-    global device, pipe
-
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    global pipe
 
     print("Initializing depth ControlNet...")
 
@@ -16,14 +13,14 @@ def init():
         "diffusers/controlnet-depth-sdxl-1.0",
         use_safetensors=True,
         torch_dtype=torch.float16
-    ).to(device)
+    ).to("cuda")
 
     print("Initializing autoencoder...")
 
     vae = AutoencoderKL.from_pretrained(
         "madebyollin/sdxl-vae-fp16-fix",
         torch_dtype=torch.float16,
-    ).to(device)
+    ).to("cuda")
 
     print("Initializing SDXL pipeline...")
 
@@ -35,7 +32,7 @@ def init():
         use_safetensors=True,
         torch_dtype=torch.float16
         # low_cpu_mem_usage=True
-    ).to(device)
+    ).to("cuda")
 
     pipe.enable_model_cpu_offload()
     # speed up diffusion process with faster scheduler and memory optimization

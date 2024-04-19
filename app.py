@@ -36,12 +36,6 @@ INTRO = """
 # Shopify Image Background Replacement
 
 [![Duplicate this Space](https://huggingface.co/datasets/huggingface/badges/resolve/main/duplicate-this-space-md.svg)](https://huggingface.co/spaces/Shopify/background-replacement?duplicate=true)
-Minimum recommended hardware: Nvidia A10G large (46 GB RAM, 24 GB VRAM)
-
-## Status
-🏝️ Since the publication of this prototype, we've devoted our efforts to developing an enhanced version within Shopify's admin interface, which is now accessible to all Shopify merchants across all subscription plans. This original space is no longer maintained and runs on a CPU-only free tier. Please duplicate this space and utilize your own GPUs.
-
-<hr>
 
 Building an online store requires lots of high quality product and marketing images. This is an early demo of a background replacement tool built with Stable Diffusion XL that makes it easy to use your existing product images to make something new. Please be patient during peak demand. 😅
 
@@ -179,8 +173,7 @@ with gr.Blocks(css=custom_css) as iface:
                 depth_map_blur_radius = gr.Number(
                     precision=0, value=10, visible=False)
 
-    # Enabled the button previously being disabled!
-    gen_button = gr.Button(value="Generate!", variant="primary") #interactive=False
+    gen_button = gr.Button(value="Generate!", variant="primary")
 
     with gr.Tab('Results'):
         results = gr.Gallery(
@@ -233,4 +226,4 @@ with gr.Blocks(css=custom_css) as iface:
         ],
     )
 
-iface.queue(max_size=10, api_open=False).launch(show_api=False, share=True)
+iface.queue(max_size=10, api_open=False).launch(show_api=False)
