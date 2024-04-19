@@ -179,9 +179,8 @@ with gr.Blocks(css=custom_css) as iface:
                 depth_map_blur_radius = gr.Number(
                     precision=0, value=10, visible=False)
 
-    # Enable this button!
-    gen_button = gr.Button(
-        value="Generate!", variant="primary", interactive=False)
+    # Enabled the button previously being disabled!
+    gen_button = gr.Button(value="Generate!", variant="primary") #interactive=False
 
     with gr.Tab('Results'):
         results = gr.Gallery(
